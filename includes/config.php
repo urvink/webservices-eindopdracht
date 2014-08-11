@@ -16,7 +16,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost'){
 }
 else{
 	$username = '0756219';
-	$password = 'matrix';
+	$password = 'mandidios';
 }
 
 $link = mysqli_connect($host,$username,$password,$db);
