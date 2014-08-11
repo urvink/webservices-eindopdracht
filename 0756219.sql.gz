@@ -1,0 +1,121 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jan 21, 2014 at 03:01 
+-- Server version: 5.6.12
+-- PHP Version: 5.5.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `0756219`
+--
+CREATE DATABASE IF NOT EXISTS `0756219` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `0756219`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `os`
+--
+-- Creation: Jan 19, 2014 at 07:47 
+--
+
+DROP TABLE IF EXISTS `os`;
+CREATE TABLE IF NOT EXISTS `os` (
+  `osID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'OS ID',
+  `company` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `osName` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'OS Name',
+  `osVersion` decimal(4,3) NOT NULL COMMENT 'OS Version',
+  `osCodeName` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT 'OS Code Name',
+  PRIMARY KEY (`osID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `os`
+--
+
+INSERT INTO `os` (`osID`, `company`, `osName`, `osVersion`, `osCodeName`) VALUES
+(1, 'Google', 'Android', '4.100', 'Jelly Bean'),
+(2, 'Google', 'Android', '4.200', 'Jelly Bean'),
+(4, 'Apple', 'iOS', '7.010', ''),
+(5, 'Google', 'Android', '4.400', 'KitKat'),
+(6, 'Microsoft', 'Windows Phone', '8.010', ''),
+(8, 'wsrtw345', 'ytgjyuk5', '3.443', 'rdgsrtg23'),
+(9, 'wsrtw', 'ytgjyuk', '3.445', 'rdgsrtg'),
+(10, 'goDADDY', '', '0.000', ''),
+(11, 'goDADDY', '', '4.000', ''),
+(13, '', '', '0.000', ''),
+(14, 'Brisbane', '', '0.000', ''),
+(15, '', '', '0.000', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phones`
+--
+-- Creation: Jan 19, 2014 at 08:32 
+--
+
+DROP TABLE IF EXISTS `phones`;
+CREATE TABLE IF NOT EXISTS `phones` (
+  `phoneID` int(11) NOT NULL AUTO_INCREMENT,
+  `maker` varchar(250) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Manufacturer',
+  `model` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Model',
+  `codenName` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Code name',
+  `size` decimal(3,2) NOT NULL COMMENT 'Display size (in inch)',
+  `pixelDensity` int(4) NOT NULL COMMENT 'Pixel Density (in ppi)',
+  `procClock` decimal(3,2) NOT NULL COMMENT 'CPU clock (in Ghz)',
+  `cores` int(2) NOT NULL COMMENT 'The amount of processor cores',
+  `procName` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'CPU name',
+  `os` int(10) NOT NULL COMMENT 'OS id',
+  `color` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Phone Color',
+  `camera` int(3) NOT NULL COMMENT 'Camera size (in megapixel - MP)',
+  `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Image url',
+  `desc` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Description or addtitional info',
+  PRIMARY KEY (`phoneID`),
+  KEY `os` (`os`),
+  KEY `os_2` (`os`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+
+--
+-- RELATIONS FOR TABLE `phones`:
+--   `os`
+--       `os` -> `osID`
+--
+
+--
+-- Dumping data for table `phones`
+--
+
+INSERT INTO `phones` (`phoneID`, `maker`, `model`, `codenName`, `size`, `pixelDensity`, `procClock`, `cores`, `procName`, `os`, `color`, `camera`, `image`, `desc`) VALUES
+(1, 'Motorolla', 'Moto X', '', '4.70', 312, '1.70', 2, 'Krait', 5, 'white', 10, 'http://androidportal.zoznam.sk/wp-content/uploads/2014/01/moto-x-white-unicorn.jpg', 'Google Drive (50 GB storage)'),
+(2, 'Motorolla', 'Moto_X', '', '4.70', 312, '1.70', 2, 'Krait', 5, 'Black', 10, 'http://www.neowin.net/images/uploaded/moto%20x%20press%20render%20black.jpg', 'Google Drive (50 GB storage)'),
+(3, 'HTC', 'One', 'm7', '4.70', 469, '1.70', 4, 'Krait 300', 5, 'Black', 4, 'http://www.technobuffalo.com/wp-content/uploads/2013/05/HTC-One-black.jpg', 'Boomsound (Beats)'),
+(4, 'Nokia', 'Lumia 1020', '909', '4.50', 332, '1.50', 2, 'Krait', 6, 'Yellow', 41, 'http://hoanghaicnc.com/images/news/ec08e588-ae56-403f-9724-69bb80ca4466_dien-thoai-nokia-lumia-1020-yellow.jpg', ''),
+(5, 'Apple', 'iphone_5s', '', '4.00', 326, '1.30', 2, 'Cyclone (ARM v8-based)', 4, 'Gold', 8, 'http://cdn2.ubergizmo.com/wp-content/uploads/2013/09/24k-gold-iphone-5s-640x414.jpg', '500 dpi fingerprint sensor'),
+(6, 'HTC', 'One', 'm7', '4.70', 469, '1.70', 4, 'Krait 300', 5, 'Red', 4, 'http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-one/en_GB/hero/htc-one-red-phones4u-exclusive.png', 'Boomsound (Beats)'),
+(9, 'Huawe', 'Ascend-G510', 'G510', '4.30', 305, '2.40', 3, 'Cortex-A52', 2, 'White1', 20, 'http://content.hwigroup.net/images/products/xl/192876/2/huawei_ascend_g510_white.jpg', 'A Chinese company made this smartphone affordable and with GREAT Specs');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `phones`
+--
+ALTER TABLE `phones`
+  ADD CONSTRAINT `phones_ibfk_1` FOREIGN KEY (`os`) REFERENCES `os` (`osID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

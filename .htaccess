@@ -1,0 +1,41 @@
+<IfModule mod_rewrite.c>
+#<Directory /var/www/private>
+#    Require valid-user
+#</Directory>
+#<Directory /home/stud/0756219/public.www>
+#    Allow from all
+#    Satisfy Any
+#</Directory>
+#Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+	RewriteEngine on
+
+	#Phones SECTION
+	RewriteRule ^phones.(json|xml)$ ./api.php?page=phones&type=$1 [NC]
+	RewriteRule ^phones/(json|xml)$ ./api.php?page=phones&type=$1 [NC]
+	RewriteRule ^phones/$ ./api.php?page=phones&type=json [NC]
+	RewriteRule ^phones$ ./api.php?page=phones&type=json [NC]
+
+#	RewriteRule ^phones/([0-9]+).(json|xml)/(maker|model|code_name|size|pixel_density|proc_clock|cores|proc_name|os|color|camera|desc)$ ./api.php?page=phones&id=$1&type=$2&query=$3 [NC]
+	RewriteRule ^phones/([0-9]+)$ ./api.php?page=phones&id=$1&type=json [NC]
+	RewriteRule ^phones/([0-9]+)/$ ./api.php?page=phones&id=$1&type=json [NC]
+	RewriteRule ^phones/([0-9]+).(json|xml)$ ./api.php?page=phones&id=$1&type=$2 [NC]
+    RewriteRule ^phones/([0-9]+)/(json|xml)$ ./api.php?page=phones&id=$1&type=$2 [NC]
+
+	#Operating System SECTION
+	RewriteRule ^os.(json|xml)$ ./api.php?page=os&type=$1 [NC]
+    RewriteRule ^os/(json|xml)$ ./api.php?page=os&type=$1 [NC]
+    RewriteRule ^os$ ./api.php?page=os&type=json [NC]
+    RewriteRule ^os/$ ./api.php?page=os&type=json [NC]
+
+	RewriteRule ^os/([0-9]+).(json|xml)$ ./api.php?page=os&id=$1&type=$2 [NC]
+	RewriteRule ^os/([0-9]+)/(json|xml)$ ./api.php?page=os&id=$1&type=$2 [NC]
+	RewriteRule ^os/([0-9]+)$ ./api.php?page=os&id=$1&type=json [NC]
+    RewriteRule ^os/([0-9]+)/$ ./api.php?page=os&id=$1&type=json [NC]
+
+    #Filters
+    RewriteRule ^os/([0-9]+).(json|xml+)?filter=(company|name|code_name|version)$ ./api.php?page=os&id=$1&type=$2&query=$3
+#    RewriteRule ^os/([0-9]+).(json|xml+)^?(company|name|version|code_name)$ ./api.php?page=os&id=$1&type=$2&query=$3
+
+#    RewriteRule ^os/([A-Za-z0-9-_]+)/([0-9]+).(json|xml)$ ./api.php?page=os&maker=$1&id=$2&type=$3 [NC]
+
+</IfModule>
